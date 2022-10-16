@@ -2,7 +2,7 @@ import React, { useEffect,useState } from "react";
 import './App.css';
 import Calculator from "./components/calculator";
 // import CalculatorContract from './contracts/Calculator.json';
-import {connectWeb3} from './functions'
+import {connectWeb3, connectWeb3Metamask} from './functions'
 
 function App() {
 
@@ -12,13 +12,15 @@ function App() {
   useEffect(()=>{ 
     async function connect(){
       try {
-        let {accounts, instance} = await connectWeb3();
+        let {accounts, instance} = await connectWeb3Metamask();
         setAccounts(accounts);
         setContract(instance);
+        // await connectWeb3Metamask()
+
       } catch (error) {
-        alert(
-          `Failed to load web3, accounts, or contract. Check console for details.`,
-        );
+        // alert(
+        //   `Failed to load web3, accounts, or contract. Check console for details.`,
+        // );
         console.log(error);
       }
     }
